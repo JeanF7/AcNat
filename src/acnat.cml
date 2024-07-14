@@ -1,40 +1,31 @@
 // Definición de Contexto Principal para el Sistema de Ecommerce
 ContextMap AcmeEacademiaMap {
-    contains GestionOrdenesContext
-    contains GestionEnviosContext
-    contains GestionClientesContext
+    contains GestionAlumnosContext
+    contains GestionMatriculasContext
     contains GestionPagosContext
-    contains GestionAutorizacionAutenticacionContext
-    contains CatalogoProductosContext
+    contains GestionCursosContext
 
     /* Cooperación */
-    GestionClientesContext [P]<->[P] GestionEnviosContext
-    GestionOrdenesContext [P]<->[P] GestionClientesContext
-    GestionOrdenesContext [P]<->[P] GestionPagosContext
+    GestionCursosContext [P]<->[P] GestionAlumnosContext
 
-    /* Conformista */
-    GestionClientesContext [CF]<-[PL] GestionAutorizacionAutenticacionContext
+    /* upstream-downstream */
+    GestionMatriculasContext [U, S]->[D, C] GestionPagosContext
+    GestionAlumnosContext [U, S]->[D, C] GestionPagosContext
+    GestionMatriculasContext [U, S]->[D, C] GestionAlumnosContext
 
-    /* Anti-corruption layer */
-    
-    /* Open-Host service */
-    CatalogoProductosContext [U, OHS]->[D] GestionOrdenesContext
+    /* Conformist */
+    GestionCursosContext [U]->[D, CF] GestionMatriculasContext
+
 }
 
-BoundedContext GestionOrdenesContext {
+BoundedContext GestionAlumnosContext {
 }
 
-BoundedContext GestionEnviosContext {
-}
-
-BoundedContext GestionClientesContext {
+BoundedContext GestionMatriculasContext {
 }
 
 BoundedContext GestionPagosContext {
 }
 
-BoundedContext GestionAutorizacionAutenticacionContext {
-}
-
-BoundedContext CatalogoProductosContext {
+BoundedContext GestionCursosContext {
 }
