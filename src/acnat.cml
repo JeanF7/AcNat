@@ -1,4 +1,4 @@
-// Definición de Contexto Principal para el Sistema de Ecommerce
+// Definición de Contexto Principal para el Sistema de Gestion de Matricula y Alumnos
 ContextMap AcmeEacademiaMap {
     contains GestionAlumnosContext
     contains GestionMatriculasContext
