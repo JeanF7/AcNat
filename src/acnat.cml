@@ -7,10 +7,9 @@ ContextMap AcmeEacademiaMap {
 
     /* Cooperación */
     GestionCursosContext [P]<->[P] GestionAlumnosContext
+    GestionPagosContext [P]<->[P] GestionAlumnosContext
 
-    /* upstream-downstream */
-    GestionMatriculasContext [U, S]->[D, C] GestionPagosContext
-    GestionAlumnosContext [U, S]->[D, C] GestionPagosContext
+    /* Customer-Supplier*/
     GestionMatriculasContext [U, S]->[D, C] GestionAlumnosContext
 
     /* Conformist */
