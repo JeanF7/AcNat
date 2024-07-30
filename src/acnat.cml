@@ -2,18 +2,24 @@
 ContextMap AcmeEacademiaMap {
     contains GestionAlumnosContext
     contains GestionMatriculasContext
-    contains GestionPagosContext
-    contains GestionCursosContext
+    contains GestionPagosConceptoContext
+    contains GestionProgramacionCursosContext
+    contains GestionAsistenciaContext
+    contains GestionInstructoresContext
 
     /* Cooperación */
-    GestionCursosContext [P]<->[P] GestionAlumnosContext
-    GestionPagosContext [P]<->[P] GestionAlumnosContext
+    GestionProgramacionCursosContext [P]<->[P] GestionAlumnosContext
+    GestionPagosConceptoContext [P]<->[P] GestionAlumnosContext
+    GestionInstructoresContext [P]<->[P] GestionProgramacionCursosContext
+    GestionProgramacionCursosContext [P]<->[P] GestionAsistenciaContext
+    GestionAlumnosContext [P]<->[P] GestionAsistenciaContext
 
     /* Customer-Supplier*/
     GestionMatriculasContext [U, S]->[D, C] GestionAlumnosContext
+    GestionMatriculasContext [U, S]->[D, C] GestionPagosConceptoContext
 
     /* Conformist */
-    GestionCursosContext [U]->[D, CF] GestionMatriculasContext
+    GestionProgramacionCursosContext [U]->[D, CF] GestionMatriculasContext
 
 }
 
@@ -23,8 +29,14 @@ BoundedContext GestionAlumnosContext {
 BoundedContext GestionMatriculasContext {
 }
 
-BoundedContext GestionPagosContext {
+BoundedContext GestionPagosConceptoContext {
 }
 
-BoundedContext GestionCursosContext {
+BoundedContext GestionProgramacionCursosContext {
+}
+
+BoundedContext GestionAsistenciaContext {
+}
+
+BoundedContext GestionInstructoresContext {
 }
